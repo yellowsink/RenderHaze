@@ -7,5 +7,12 @@ namespace VideoRenderer
 		public Object<TPixel> Obj;
 		public TimePoint[]    TimePoints;
 		public ulong          LastFrameNum;
+
+		public Timeline(Object<TPixel> obj, ulong lastFrameNum, TimePoint[] timePoints)
+		{
+			Obj          = obj;
+			TimePoints   = timePoints;
+			LastFrameNum = lastFrameNum;
+		}
 	}
 }

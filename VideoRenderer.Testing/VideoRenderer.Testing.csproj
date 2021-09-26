@@ -13,13 +13,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ImageRenderer\ImageRenderer.csproj" />
+      <ProjectReference Include="..\VideoRenderer\VideoRenderer.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="test_2.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
       <None Update="test_1.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>

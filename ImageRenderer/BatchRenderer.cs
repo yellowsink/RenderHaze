@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using SixLabors.ImageSharp;
@@ -16,5 +17,16 @@ namespace ImageRenderer
 			=> Renderers
 			  .Select(r => r.Render(width, height))
 			  .ToArray();
+
+		public void RenderAllToFiles(int width, int height, string[] filenames)
+		{
+			if (filenames.Length != Renderers.Count)
+				throw new ArgumentException("Please provide one filename per renderer", nameof(filenames));
+
+			var rendererPairs = Renderers.Zip(filenames);
+
+			foreach (var (renderer, filename) in rendererPairs)
+				renderer.Render(width, height).Save(filename);
+		}
 	}
 }
