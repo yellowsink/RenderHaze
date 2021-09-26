@@ -1,6 +1,22 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=90bb891e_002Db9d8_002D440b_002D8dee_002D1bd5b4efe733/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Test1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=30cda39a_002D4fe3_002D4b47_002D8ce7_002De3c2c6f9a8dd/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Session" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;NUnit3x::F87408A6-EEA8-481D-B4F2-BF4134F84B95::net5.0::ImageRenderer.Testing.Tests.Test1&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::F87408A6-EEA8-481D-B4F2-BF4134F84B95::net5.0::ImageRenderer.Testing.Tests.Test2&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::E76D20C9-DF3B-48FD-BAF9-3F178969D041::net5.0::VideoRenderer.Testing.Tests.Test1&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=90bb891e_002Db9d8_002D440b_002D8dee_002D1bd5b4efe733/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Test1" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::F87408A6-EEA8-481D-B4F2-BF4134F84B95::net5.0::ImageRenderer.Testing.Tests.Test1&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::F87408A6-EEA8-481D-B4F2-BF4134F84B95::net5.0::ImageRenderer.Testing.Tests.Test2&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::E76D20C9-DF3B-48FD-BAF9-3F178969D041::net5.0::VideoRenderer.Testing.Tests.Test1&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b66026e1_002D546b_002D4672_002Db087_002Dfc482ebcd311/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Session #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;NUnit3x::F87408A6-EEA8-481D-B4F2-BF4134F84B95::net5.0::ImageRenderer.Testing.Tests.Test1&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::F87408A6-EEA8-481D-B4F2-BF4134F84B95::net5.0::ImageRenderer.Testing.Tests.Test2&lt;/TestId&gt;
+    &lt;TestId&gt;NUnit3x::E76D20C9-DF3B-48FD-BAF9-3F178969D041::net5.0::VideoRenderer.Testing.Tests.Test1&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

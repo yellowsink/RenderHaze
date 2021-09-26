@@ -10,7 +10,7 @@ namespace VideoRenderer
 {
 	public class FrameRenderer<TPixel> where TPixel : unmanaged, IPixel<TPixel>
 	{
-		public List<Timeline<TPixel>> ObjectTimelines;
+		public List<Timeline<TPixel>> ObjectTimelines = new();
 
 		private BatchRenderer<TPixel> GenerateRenderer(out ulong frameCount)
 		{
@@ -34,7 +34,7 @@ namespace VideoRenderer
 		{
 			var directory  = Directory.CreateDirectory(dir);
 			var renderer   = GenerateRenderer(out var frameCount);
-			var frameNames = Enumerable.Range(0, (int) frameCount)
+			var frameNames = Enumerable.Range(1, (int) frameCount)
 									   .Select(i => Path.Combine(directory.FullName, $"{i}.png"))
 									   .ToArray();
 			
@@ -50,7 +50,7 @@ namespace VideoRenderer
 				TimePoint? nextTp    = null;
 				foreach (var point in timeline.TimePoints)
 				{
-					if (timePoint.HasValue)
+					if (point.FrameNum > frameNum && timePoint.HasValue)
 					{
 						nextTp = point;
 						break;
@@ -70,7 +70,7 @@ namespace VideoRenderer
 				
 				var tp            = timePoint.Value;
 				var nTp           = nextTp.Value;
-				var pointProgress = (frameNum - tp.FrameNum) / (nTp.FrameNum - tp.FrameNum);
+				var pointProgress = (frameNum - tp.FrameNum + 1) / (float) (nTp.FrameNum - tp.FrameNum + 1);
 
 				var x = Convert.ToInt32(Interpolate(tp.X, nTp.X, pointProgress));
 				var y = Convert.ToInt32(Interpolate(tp.Y, nTp.Y, pointProgress));
@@ -80,6 +80,6 @@ namespace VideoRenderer
 			}
 		}
 
-		private float Interpolate(float val1, float val2, float blend) => ((val1 * blend) + (val2 / blend)) / 2;
+		private float Interpolate(float val1, float val2, float blend) => (blend * (val2 - val1)) + val1;
 	}
 }

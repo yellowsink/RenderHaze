@@ -20,7 +20,7 @@
       <None Update="test_1.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-      <None Update="test_3.PNG">
+      <None Update="test_2.png">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
     </ItemGroup>
