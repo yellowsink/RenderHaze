@@ -35,7 +35,8 @@ namespace VideoRenderer
 			var directory  = Directory.CreateDirectory(dir);
 			var renderer   = GenerateRenderer(out var frameCount);
 			var frameNames = Enumerable.Range(1, (int) frameCount)
-									   .Select(i => Path.Combine(directory.FullName, $"{i}.png"))
+									   .Select(i => Path.Combine(directory.FullName,
+																 i.ToString().PadLeft(6, '0') + ".png"))
 									   .ToArray();
 			
 			renderer.RenderAllToFiles(width, height, frameNames);

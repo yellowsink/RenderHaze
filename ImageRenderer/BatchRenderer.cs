@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
@@ -23,10 +24,38 @@ namespace ImageRenderer
 			if (filenames.Length != Renderers.Count)
 				throw new ArgumentException("Please provide one filename per renderer", nameof(filenames));
 
-			var rendererPairs = Renderers.Zip(filenames);
+			var rendererPairs = Renderers.Zip(filenames).ToArray();
 
-			foreach (var (renderer, filename) in rendererPairs)
-				renderer.Render(width, height).Save(filename);
+			BatchTaskUnordered(rendererPairs, pair => pair.First.Render(width, height).Save(pair.Second), 8);
+		}
+		
+		// taken from https://github.com/yellowsink/sinkbox/blob/2817fd99793f5bfb7bd9ddd8811cfc0159796c61/Sinkbox/Threading.cs#L43 and modified
+		private static void BatchTaskUnordered<T>(T[] items, Action<T> processFunc, int threads)
+		{
+			if (items.Length < threads) threads = items.Length;
+
+			var threadBatches = new List<T>?[threads];
+			for (var i = 0; i < items.Length; i++)
+			{
+				threadBatches[i % threads] ??= new List<T>();
+
+				threadBatches[i % threads]!.Add(items[i]);
+			}
+
+			var threadTasks = new Task[threads];
+			for (var i = 0; i < threadBatches.Length; i++)
+			{
+				// c# scoping rules fun
+				var i1 = i;
+				threadTasks[i] = Task.Run(() => QueueProcess(threadBatches[i1]!, processFunc));
+			}
+
+			Task.WaitAll(threadTasks.ToArray());
+
+			static void QueueProcess(IEnumerable<T> items, Action<T> func)
+			{
+				foreach (var item in items) func(item);
+			}
 		}
 	}
 }
