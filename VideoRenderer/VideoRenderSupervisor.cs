@@ -21,7 +21,7 @@ namespace VideoRenderer
 
 		public void RenderVideoTo(string outputPath, string? audioPath)
 		{
-			var tmpPath = Path.Combine(TmpPath.DefaultTempLocation, "render_output");
+			var tmpPath = Path.Combine(TmpPath.DefaultTempLocation, "renderhaze_frames");
 			
 			var frameRenderer = new FrameRenderer<TPixel>();
 			frameRenderer.ObjectTimelines = Timelines.ToList();
