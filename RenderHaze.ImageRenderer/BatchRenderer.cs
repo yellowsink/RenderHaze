@@ -23,10 +23,10 @@ namespace RenderHaze.ImageRenderer
 		{
 			if (filenames.Length != Renderers.Count)
 				throw new ArgumentException("Please provide one filename per renderer", nameof(filenames));
+			
+			var rendererPairs = Renderers.Zip(filenames, (f,s) => (f, s)).ToArray();
 
-			var rendererPairs = Renderers.Zip(filenames).ToArray();
-
-			BatchTaskUnordered(rendererPairs, pair => pair.First.Render(width, height).Save(pair.Second), 8);
+			BatchTaskUnordered(rendererPairs, pair => pair.f.Render(width, height).Save(pair.s), 8);
 		}
 		
 		// taken from https://github.com/yellowsink/sinkbox/blob/2817fd99793f5bfb7bd9ddd8811cfc0159796c61/Sinkbox/Threading.cs#L43 and modified

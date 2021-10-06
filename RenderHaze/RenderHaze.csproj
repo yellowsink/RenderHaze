@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>netstandard2.0</TargetFramework>
 
         <PackageId>RenderHaze</PackageId>
         <Version>1.0.0</Version>
@@ -9,6 +9,7 @@
         <Description>RenderHaze metapackage</Description>
         <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <RepositoryUrl>https://github.com/yellowsink/RenderHaze</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>
