@@ -3,7 +3,7 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
 
-namespace ImageRenderer
+namespace RenderHaze.ImageRenderer
 {
 	public class Renderer<TPixel> where TPixel : unmanaged, IPixel<TPixel>
 	{

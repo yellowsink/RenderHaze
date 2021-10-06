@@ -2,7 +2,7 @@ using System.IO;
 using System.Linq;
 using SixLabors.ImageSharp.PixelFormats;
 
-namespace VideoRenderer
+namespace RenderHaze.VideoRenderer
 {
 	public class VideoRenderSupervisor<TPixel> where TPixel : unmanaged, IPixel<TPixel>
 	{

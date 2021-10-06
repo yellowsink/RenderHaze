@@ -1,6 +1,6 @@
 ﻿using SixLabors.ImageSharp.PixelFormats;
 
-namespace VideoRenderer
+namespace RenderHaze.VideoRenderer
 {
 	public struct Timeline<TPixel> where TPixel : unmanaged, IPixel<TPixel>
 	{

@@ -1,4 +1,4 @@
-namespace VideoRenderer
+namespace RenderHaze.VideoRenderer
 {
 	public struct TimePoint
 	{

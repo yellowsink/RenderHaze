@@ -13,7 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\VideoRenderer\VideoRenderer.csproj" />
+      <ProjectReference Include="..\RenderHaze.VideoRenderer\RenderHaze.VideoRenderer.csproj" />
     </ItemGroup>
 
     <ItemGroup>

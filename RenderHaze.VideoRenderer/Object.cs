@@ -1,7 +1,7 @@
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
-namespace VideoRenderer
+namespace RenderHaze.VideoRenderer
 {
 	public class Object<TPixel> where TPixel : unmanaged, IPixel<TPixel>
 	{

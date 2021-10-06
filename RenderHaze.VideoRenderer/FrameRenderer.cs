@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using ImageRenderer;
+using RenderHaze.ImageRenderer;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
-namespace VideoRenderer
+namespace RenderHaze.VideoRenderer
 {
 	public class FrameRenderer<TPixel> where TPixel : unmanaged, IPixel<TPixel>
 	{

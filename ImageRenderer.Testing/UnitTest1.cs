@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using NUnit.Framework;
+using RenderHaze.ImageRenderer;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 

@@ -2,7 +2,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Xabe.FFmpeg;
 
-namespace VideoRenderer
+namespace RenderHaze.VideoRenderer
 {
 	public static class Encoder
 	{

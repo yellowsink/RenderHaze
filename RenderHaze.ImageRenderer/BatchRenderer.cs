@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
-namespace ImageRenderer
+namespace RenderHaze.ImageRenderer
 {
 	public class BatchRenderer<TPixel> where TPixel : unmanaged, IPixel<TPixel>
 	{
