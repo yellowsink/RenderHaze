@@ -19,27 +19,31 @@ namespace RenderHaze.ImageRenderer
 			  .Select(r => r.Render(width, height))
 			  .ToArray();
 
-		public void RenderAllToFiles(int width, int height, string[] filenames)
+		public void RenderAllToFiles(int width, int height, string[] filenames, EventHandler<(int, int)>? progress)
 		{
 			if (filenames.Length != Renderers.Count)
 				throw new ArgumentException("Please provide one filename per renderer", nameof(filenames));
 			
 			var rendererPairs = Renderers.Zip(filenames, (f,s) => (f, s)).ToArray();
 
-			BatchTaskUnordered(rendererPairs, pair => pair.f.Render(width, height).Save(pair.s), 8);
+			BatchTaskUnordered(rendererPairs, args =>
+			{
+				args.Item.f.Render(width, height).Save(args.Item.s);
+				progress?.Invoke(this, (args.Index, rendererPairs.Length));
+			}, 8);
 		}
 		
 		// taken from https://github.com/yellowsink/sinkbox/blob/2817fd99793f5bfb7bd9ddd8811cfc0159796c61/Sinkbox/Threading.cs#L43 and modified
-		private static void BatchTaskUnordered<T>(T[] items, Action<T> processFunc, int threads)
+		private static void BatchTaskUnordered<T>(T[] items, Action<(int Index, T Item)> processFunc, int threads)
 		{
 			if (items.Length < threads) threads = items.Length;
 
-			var threadBatches = new List<T>?[threads];
+			var threadBatches = new List<(int, T)>?[threads];
 			for (var i = 0; i < items.Length; i++)
 			{
-				threadBatches[i % threads] ??= new List<T>();
+				threadBatches[i % threads] ??= new List<(int, T)>();
 
-				threadBatches[i % threads]!.Add(items[i]);
+				threadBatches[i % threads]!.Add((i, items[i]));
 			}
 
 			var threadTasks = new Task[threads];
@@ -52,7 +56,7 @@ namespace RenderHaze.ImageRenderer
 
 			Task.WaitAll(threadTasks.ToArray());
 
-			static void QueueProcess(IEnumerable<T> items, Action<T> func)
+			static void QueueProcess(IEnumerable<(int, T)> items, Action<(int, T)> func)
 			{
 				foreach (var item in items) func(item);
 			}

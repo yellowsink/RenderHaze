@@ -40,7 +40,7 @@ namespace VideoRenderer.Testing
 			
 			var supervisor = new VideoRenderSupervisor<Rgba64>(timelines, 1920, 1080, 30);
 
-			supervisor.RenderVideoTo(Path.Combine(Environment.CurrentDirectory, "test_out.mp4"), null);
+			supervisor.RenderVideoTo(Path.Combine(Environment.CurrentDirectory, "test_out.mp4"), null, null);
 		}
 	}
 }

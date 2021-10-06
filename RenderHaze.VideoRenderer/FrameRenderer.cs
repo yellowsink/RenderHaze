@@ -30,7 +30,7 @@ namespace RenderHaze.VideoRenderer
 
 		public Image<TPixel>[] RenderFrames(int width, int height) => GenerateRenderer(out _).RenderAll(width, height);
 
-		public void RenderFramesToDisk(int width, int height, string dir)
+		public void RenderFramesToDisk(int width, int height, string dir, EventHandler<(int, int)>? progress)
 		{
 			var directory  = Directory.CreateDirectory(dir);
 			var renderer   = GenerateRenderer(out var frameCount);
@@ -39,7 +39,7 @@ namespace RenderHaze.VideoRenderer
 																 i.ToString().PadLeft(6, '0') + ".png"))
 									   .ToArray();
 			
-			renderer.RenderAllToFiles(width, height, frameNames);
+			renderer.RenderAllToFiles(width, height, frameNames, progress);
 		}
 
 		private void GenerateLayers(ref Renderer<TPixel> rend, ulong frameNum)

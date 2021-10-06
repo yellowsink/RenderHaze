@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using SixLabors.ImageSharp.PixelFormats;
@@ -19,13 +20,13 @@ namespace RenderHaze.VideoRenderer
 			Framerate = framerate;
 		}
 
-		public void RenderVideoTo(string outputPath, string? audioPath)
+		public void RenderVideoTo(string outputPath, string? audioPath, EventHandler<(int, int)>? progress)
 		{
 			var tmpPath = Path.Combine(TmpPath.DefaultTempLocation, "renderhaze_frames");
 			
 			var frameRenderer = new FrameRenderer<TPixel>();
 			frameRenderer.ObjectTimelines = Timelines.ToList();
-			frameRenderer.RenderFramesToDisk((int) Width, (int) Height, tmpPath);
+			frameRenderer.RenderFramesToDisk((int) Width, (int) Height, tmpPath, progress);
 
 			var files = new DirectoryInfo(tmpPath).EnumerateFiles()
 												  .Select(f => f.FullName)
@@ -36,5 +37,17 @@ namespace RenderHaze.VideoRenderer
 			
 			Directory.Delete(tmpPath, true);
 		}
+	}
+
+	public struct RenderProgressReport
+	{
+		public int                Total;
+		public int                Completed;
+		public RenderProgressType Type;
+	}
+
+	public enum RenderProgressType
+	{
+		Rendering, Encoding
 	}
 }
