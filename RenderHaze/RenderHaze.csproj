@@ -4,7 +4,7 @@
         <TargetFramework>netstandard2.0</TargetFramework>
 
         <PackageId>RenderHaze</PackageId>
-        <Version>1.1.1</Version>
+        <Version>1.1.2</Version>
         <Authors>Cain Atkinson</Authors>
         <Description>RenderHaze metapackage</Description>
         <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>

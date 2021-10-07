@@ -28,7 +28,7 @@ namespace RenderHaze.VideoRenderer
 														 ? (s, p) => progress.Invoke(s,
 															 new RenderProgressReport
 															 {
-																 Total = p.Item1, Completed = p.Item2,
+																 Completed = p.Item1, Total = p.Item2,
 																 Type  = RenderProgressType.Rendering
 															 })
 														 : null;
