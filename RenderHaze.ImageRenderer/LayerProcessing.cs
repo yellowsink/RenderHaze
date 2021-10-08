@@ -60,7 +60,7 @@ namespace RenderHaze.ImageRenderer
 		public static (int x, int y) CalculateOriginOffset<TPixel>(IImageProcessingContext pc, Layer<TPixel> layer)
 			where TPixel : unmanaged, IPixel<TPixel>
 		{
-			var x = layer.ScaleOrigin switch
+			var x = layer.OffsetOrigin switch
 			{
 				OriginPoint.TopLeft      => 0,
 				OriginPoint.CenterLeft   => 0,
@@ -74,7 +74,7 @@ namespace RenderHaze.ImageRenderer
 				_                        => throw new ArgumentOutOfRangeException()
 			};
 
-			var y = layer.ScaleOrigin switch
+			var y = layer.OffsetOrigin switch
 			{
 				OriginPoint.TopLeft      => 0,
 				OriginPoint.TopCenter    => 0,

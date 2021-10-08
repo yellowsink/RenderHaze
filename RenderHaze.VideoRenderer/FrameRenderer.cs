@@ -65,10 +65,12 @@ namespace RenderHaze.VideoRenderer
 
 				if (o < 0.001) continue; // acceptable range for opacity to be effectively 0
 				
-				var x = Convert.ToInt32(Interpolate(lastPoint.X, nextPoint.X, progress));
-				var y = Convert.ToInt32(Interpolate(lastPoint.Y, nextPoint.Y, progress));
+				var x  = Convert.ToInt32(Interpolate(lastPoint.X, nextPoint.X, progress));
+				var y  = Convert.ToInt32(Interpolate(lastPoint.Y, nextPoint.Y, progress));
+				var sx = Interpolate(lastPoint.Sx, nextPoint.Sx, progress);
+				var sy = Interpolate(lastPoint.Sy, nextPoint.Sy, progress);
 
-				rend.AddObject(obj.Image, x, y, o);
+				rend.AddObject(obj.Image, x, y, o, sx, sy, lastPoint.OffsetOrigin, lastPoint.ScaleOrigin);
 			}
 		}
 
