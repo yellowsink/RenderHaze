@@ -35,12 +35,12 @@ namespace RenderHaze.ImageRenderer
 					OriginPoint.TopLeft      => 0,
 					OriginPoint.CenterLeft   => 0,
 					OriginPoint.BottomLeft   => 0,
-					OriginPoint.TopCenter    => (float) width / 2 - newX / 2,
-					OriginPoint.Center       => (float) width / 2 - newX / 2,
-					OriginPoint.BottomCenter => (float) width / 2 - newX / 2,
-					OriginPoint.TopRight     => width             - newX,
-					OriginPoint.CenterRight  => width             - newX,
-					OriginPoint.BottomRight  => width             - newX,
+					OriginPoint.TopCenter    => (width - newX) / (2 * scaleX),
+					OriginPoint.Center       => (width - newX) / (2 * scaleX),
+					OriginPoint.BottomCenter => (width - newX) / (2 * scaleX),
+					OriginPoint.TopRight     => (width - newX) / 2,
+					OriginPoint.CenterRight  => (width - newX) / 2,
+					OriginPoint.BottomRight  => (width - newX) / 2,
 					_                        => throw new ArgumentOutOfRangeException()
 				};
 			}
@@ -53,12 +53,12 @@ namespace RenderHaze.ImageRenderer
 					OriginPoint.TopLeft      => 0,
 					OriginPoint.TopCenter    => 0,
 					OriginPoint.TopRight     => 0,
-					OriginPoint.CenterLeft   => (float) height / 2 - newY / 2,
-					OriginPoint.Center       => (float) height / 2 - newY / 2,
-					OriginPoint.CenterRight  => (float) height / 2 - newY / 2,
-					OriginPoint.BottomLeft   => height             - newY,
-					OriginPoint.BottomCenter => height             - newY,
-					OriginPoint.BottomRight  => height             - newY,
+					OriginPoint.CenterLeft   => (height - newY) / (2 * scaleY),
+					OriginPoint.Center       => (height - newY) / (2 * scaleY),
+					OriginPoint.CenterRight  => (height - newY) / (2 * scaleY),
+					OriginPoint.BottomLeft   => (height - newY) / 2,
+					OriginPoint.BottomCenter => (height - newY) / 2,
+					OriginPoint.BottomRight  => (height - newY) / 2,
 					_                        => throw new ArgumentOutOfRangeException()
 				};
 			}
