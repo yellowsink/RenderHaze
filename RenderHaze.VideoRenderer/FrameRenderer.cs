@@ -42,45 +42,55 @@ namespace RenderHaze.VideoRenderer
 			renderer.RenderAllToFiles(width, height, frameNames, progress);
 		}
 
-		private void GenerateLayers(ref Renderer<TPixel> rend, ulong frameNum)
+		private void GenerateLayers(ref Renderer<TPixel> rend, ulong frame)
 		{
 			foreach (var timeline in ObjectTimelines)
 			{
-				var        obj       = timeline.Obj;
-				TimePoint? timePoint = null;
-				TimePoint? nextTp    = null;
-				foreach (var point in timeline.TimePoints)
-				{
-					if (point.FrameNum > frameNum && timePoint.HasValue)
-					{
-						nextTp = point;
-						break;
-					}
+				var obj = timeline.Obj;
+				var (rawLastTp, rawNextTp) = FindRelevantTimingPoints(frame, timeline);
 
-					if (point.FrameNum <= frameNum)
-						timePoint = point;
-				}
-				
-				if (!timePoint.HasValue) return;
-				if (!nextTp.HasValue)
+				if (!rawLastTp.HasValue) return;
+				if (!rawNextTp.HasValue)
 				{
-					var ntp = timePoint.Value;
+					var ntp = rawLastTp.Value;
 					ntp.FrameNum++;
-					nextTp = ntp;
+					rawNextTp = ntp;
 				}
-				
-				var tp            = timePoint.Value;
-				var nTp           = nextTp.Value;
-				var pointProgress = (frameNum - tp.FrameNum + 1) / (float) (nTp.FrameNum - tp.FrameNum + 1);
 
-				var x = Convert.ToInt32(Interpolate(tp.X, nTp.X, pointProgress));
-				var y = Convert.ToInt32(Interpolate(tp.Y, nTp.Y, pointProgress));
-				var o = Interpolate(tp.Opacity, nTp.Opacity, pointProgress);
+				var lastPoint = rawLastTp.Value;
+				var nextPoint = rawNextTp.Value;
+				var progress = (float) (frame - lastPoint.FrameNum + 1) / (nextPoint.FrameNum - lastPoint.FrameNum + 1);
+
+				var o = Interpolate(lastPoint.Opacity, nextPoint.Opacity, progress);
+
+				if (o < 0.001) continue; // acceptable range for opacity to be effectively 0
 				
+				var x = Convert.ToInt32(Interpolate(lastPoint.X, nextPoint.X, progress));
+				var y = Convert.ToInt32(Interpolate(lastPoint.Y, nextPoint.Y, progress));
+
 				rend.AddObject(obj.Image, x, y, o);
 			}
 		}
 
-		private float Interpolate(float val1, float val2, float blend) => (blend * (val2 - val1)) + val1;
+		private static (TimePoint?, TimePoint?) FindRelevantTimingPoints(ulong frameNum, Timeline<TPixel> timeline)
+		{
+			TimePoint? timePoint = null;
+			TimePoint? nextTp    = null;
+			foreach (var point in timeline.TimePoints)
+			{
+				if (point.FrameNum > frameNum && timePoint.HasValue)
+				{
+					nextTp = point;
+					break;
+				}
+
+				if (point.FrameNum <= frameNum)
+					timePoint = point;
+			}
+
+			return (timePoint, nextTp);
+		}
+
+		private static float Interpolate(float val1, float val2, float blend) => (blend * (val2 - val1)) + val1;
 	}
 }
