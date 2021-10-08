@@ -29,6 +29,7 @@ namespace RenderHaze.ImageRenderer
 			BatchTaskUnordered(rendererPairs, args =>
 			{
 				args.Item.f.Render(width, height).Save(args.Item.s);
+				args.Item.f.Dispose();
 				progress?.Invoke(this, (args.Index, rendererPairs.Length));
 			}, 8);
 		}

@@ -1,2 +1,3 @@
 #!/bin/sh
-dotnet build -c Release RenderHaze/RenderHaze.csproj
+rm -rf */(bin|obj)
+dotnet build -c Release -v q RenderHaze/RenderHaze.csproj

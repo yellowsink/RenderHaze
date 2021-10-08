@@ -6,7 +6,7 @@
         <LangVersion>9</LangVersion>
         
         <PackageId>RenderHaze.ImageRenderer</PackageId>
-        <Version>1.1.0</Version>
+        <Version>1.2.0</Version>
         <Authors>Cain Atkinson</Authors>
         <Description>Image compositor, part of RenderHaze</Description>
         <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>

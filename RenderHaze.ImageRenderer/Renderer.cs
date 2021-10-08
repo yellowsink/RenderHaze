@@ -1,11 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
 
 namespace RenderHaze.ImageRenderer
 {
-	public class Renderer<TPixel> where TPixel : unmanaged, IPixel<TPixel>
+	public class Renderer<TPixel> : IDisposable where TPixel : unmanaged, IPixel<TPixel>
 	{
 		public List<Layer<TPixel>> Layers = new();
 		
@@ -26,5 +27,10 @@ namespace RenderHaze.ImageRenderer
 		{
 			x.DrawImage(layer.Image, new Point(layer.OffsetX, layer.OffsetY), layer.Opacity);
 		});
+
+		public void Dispose()
+		{
+			foreach (var t in Layers) t.Image.Dispose();
+		}
 	}
 }
