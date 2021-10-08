@@ -35,8 +35,8 @@ namespace RenderHaze.ImageRenderer
 
 			img.Mutate(x =>
 			{
-				var (scaleOx, scaleOy)   =  LayerProcessing.Scale(x, layer);
-				var (originOx, originOy) =  LayerProcessing.CalculateOriginOffset(x, layer);
+				var (scaleOx, scaleOy)   =  ImageProcessing.Scale(x, layer);
+				var (originOx, originOy) =  ImageProcessing.CalculateOriginOffset(layer);
 				processedLayer.OffsetX   += (int) scaleOx + originOx;
 				processedLayer.OffsetY   += (int) scaleOy + originOy;
 			});

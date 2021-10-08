@@ -23,9 +23,9 @@ namespace ImageRenderer.Testing
 
 			var baseImage = Image.Load<Rgba64>(test2);
 
-			renderer.AddObject(baseImage, 0, 0, 1); // base layer
-			renderer.AddObject(test1, 5, 10, 0.5f); // add a rectangular transparent layer
-			renderer.AddObject(test3, 200, 300, 1); // add a layer with transparency in the image
+			renderer.AddObject(baseImage, 0,   0,   1,    1.5f);   // base layer
+			renderer.AddObject(test1,     5,   10,  0.5f, .5f, 2); // add a rectangular transparent layer
+			renderer.AddObject(test3,     200, 300, 1);            // add a layer with transparency in the image
 
 			var result = renderer.Render(baseImage.Width, baseImage.Height);
 			result.SaveAsPng(Path.Combine(currentDir, "out.png"));

@@ -64,13 +64,33 @@ namespace RenderHaze.VideoRenderer
 				var o = Interpolate(lastPoint.Opacity, nextPoint.Opacity, progress);
 
 				if (o < 0.001) continue; // acceptable range for opacity to be effectively 0
+
+				var (lxo, lyo) = ImageProcessing.CalculateScaleOffset(obj.Image.Width,
+																	  obj.Image.Height,
+																	  lastPoint.Sx,
+																	  lastPoint.Sy,
+																	  lastPoint.ScaleOrigin);
+				var (nxo, nyo) = ImageProcessing.CalculateScaleOffset(obj.Image.Width,
+																	  obj.Image.Height,
+																	  nextPoint.Sx,
+																	  nextPoint.Sy,
+																	  nextPoint.ScaleOrigin);
+				var (lxo1, lyo1)
+					= ImageProcessing.CalculateOriginOffset(obj.Image.Width, obj.Image.Height, lastPoint.OffsetOrigin);
+				var (nxo1, nyo1)
+					= ImageProcessing.CalculateOriginOffset(obj.Image.Width, obj.Image.Height, nextPoint.OffsetOrigin);
+
+				lxo += lxo1;
+				lyo += lyo1;
+				nxo += nxo1;
+				nyo += nyo1;
 				
-				var x  = Convert.ToInt32(Interpolate(lastPoint.X, nextPoint.X, progress));
-				var y  = Convert.ToInt32(Interpolate(lastPoint.Y, nextPoint.Y, progress));
+				var x  = Convert.ToInt32(Interpolate(lastPoint.X + lxo, nextPoint.X + lyo, progress));
+				var y  = Convert.ToInt32(Interpolate(lastPoint.Y + nxo, nextPoint.Y + nyo, progress));
 				var sx = Interpolate(lastPoint.Sx, nextPoint.Sx, progress);
 				var sy = Interpolate(lastPoint.Sy, nextPoint.Sy, progress);
 
-				rend.AddObject(obj.Image, x, y, o, sx, sy, lastPoint.OffsetOrigin, lastPoint.ScaleOrigin);
+				rend.AddObject(obj.Image, x, y, o, sx, sy);
 			}
 		}
 
