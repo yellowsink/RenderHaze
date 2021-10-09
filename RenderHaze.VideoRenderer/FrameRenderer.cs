@@ -28,12 +28,16 @@ namespace RenderHaze.VideoRenderer
 			return renderer;
 		}
 
-		public Image<TPixel>[] RenderFrames(int width, int height) => GenerateRenderer(out _).RenderAll(width, height);
+		public Image<TPixel>[] RenderFrames(int width, int height)
+		{
+			using var rend = GenerateRenderer(out _);
+			return rend.RenderAll(width, height);
+		}
 
 		public void RenderFramesToDisk(int width, int height, string dir, EventHandler<(int, int)>? progress)
 		{
-			var directory  = Directory.CreateDirectory(dir);
-			var renderer   = GenerateRenderer(out var frameCount);
+			var       directory = Directory.CreateDirectory(dir);
+			using var renderer  = GenerateRenderer(out var frameCount);
 			var frameNames = Enumerable.Range(1, (int) frameCount)
 									   .Select(i => Path.Combine(directory.FullName,
 																 i.ToString().PadLeft(6, '0') + ".png"))

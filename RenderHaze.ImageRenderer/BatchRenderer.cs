@@ -7,7 +7,7 @@ using SixLabors.ImageSharp.PixelFormats;
 
 namespace RenderHaze.ImageRenderer
 {
-	public class BatchRenderer<TPixel> where TPixel : unmanaged, IPixel<TPixel>
+	public class BatchRenderer<TPixel> : IDisposable where TPixel : unmanaged, IPixel<TPixel>
 	{
 		public List<Renderer<TPixel>> Renderers = new();
 		
@@ -29,7 +29,6 @@ namespace RenderHaze.ImageRenderer
 			BatchTaskUnordered(rendererPairs, args =>
 			{
 				args.Item.f.Render(width, height).Save(args.Item.s);
-				args.Item.f.Dispose();
 				progress?.Invoke(this, (args.Index, rendererPairs.Length));
 			}, 8);
 		}
@@ -61,6 +60,11 @@ namespace RenderHaze.ImageRenderer
 			{
 				foreach (var item in items) func(item);
 			}
+		}
+
+		public void Dispose()
+		{
+			foreach (var r in Renderers) r.Dispose();
 		}
 	}
 }
