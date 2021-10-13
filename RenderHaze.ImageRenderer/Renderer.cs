@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
 
 namespace RenderHaze.ImageRenderer
 {
+	[DebuggerDisplay("Renderer with {Layers.Count} layers")]
 	public class Renderer<TPixel> : IDisposable where TPixel : unmanaged, IPixel<TPixel>
 	{
 		public List<Layer<TPixel>> Layers = new();

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using RenderHaze.ImageRenderer;
@@ -8,6 +9,7 @@ using SixLabors.ImageSharp.PixelFormats;
 
 namespace RenderHaze.VideoRenderer
 {
+	[DebuggerDisplay("Renderer with {ObjectTimelines.Count} timelines")]
 	public class FrameRenderer<TPixel> where TPixel : unmanaged, IPixel<TPixel>
 	{
 		public List<Timeline<TPixel>> ObjectTimelines = new();

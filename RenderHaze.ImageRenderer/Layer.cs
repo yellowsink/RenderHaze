@@ -1,8 +1,10 @@
+using System.Diagnostics;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
 namespace RenderHaze.ImageRenderer
 {
+	[DebuggerDisplay("({OffsetX},{OffsetY}) @{Opacity * 100}% Scaled ({ScaleX * 100},{ScaleY * 100})%")]
 	public class Layer<T> where T : unmanaged, IPixel<T>
 	{
 		public Image<T>    Image;

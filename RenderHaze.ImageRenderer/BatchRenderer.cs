@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using SixLabors.ImageSharp;
@@ -7,6 +8,7 @@ using SixLabors.ImageSharp.PixelFormats;
 
 namespace RenderHaze.ImageRenderer
 {
+	[DebuggerDisplay("Batch Renderer with {Renderers.Count} individual renderers")]
 	public class BatchRenderer<TPixel> : IDisposable where TPixel : unmanaged, IPixel<TPixel>
 	{
 		public List<Renderer<TPixel>> Renderers = new();

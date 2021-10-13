@@ -1,7 +1,9 @@
+using System.Diagnostics;
 using RenderHaze.ImageRenderer;
 
 namespace RenderHaze.VideoRenderer
 {
+	[DebuggerDisplay("({X},{Y}) @{Opacity * 100}% Scaled ({Sx * 100},{Sy * 100})% (Frame {FrameNum})")]
 	public struct TimePoint
 	{
 		public int         X;

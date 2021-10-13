@@ -1,10 +1,12 @@
 using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using SixLabors.ImageSharp.PixelFormats;
 
 namespace RenderHaze.VideoRenderer
 {
+	[DebuggerDisplay("size {Width}x{Height} with {Timelines.Length} timelines @{Framerate}fps")]
 	public class VideoRenderSupervisor<TPixel> where TPixel : unmanaged, IPixel<TPixel>
 	{
 		public readonly Timeline<TPixel>[] Timelines;
