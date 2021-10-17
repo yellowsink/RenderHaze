@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <LangVersion>9</LangVersion>
+
+        <PackageId>RenderHaze.Mlt</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>Cain Atkinson</Authors>
+        <Description>Tool to help with using the MLT Framework</Description>
+        <PackageLicenseExpression>BSD-3-Clause</PackageLicenseExpression>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <RepositoryUrl>https://github.com/yellowsink/RenderHaze</RepositoryUrl>
+  </PropertyGroup>
+
+</Project>

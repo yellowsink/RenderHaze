@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.6.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderHaze.ImageRenderer", "RenderHaze.ImageRenderer\RenderHaze.ImageRenderer.csproj", "{C1A57990-C706-45E6-922F-D5C0DA56F500}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageRenderer.Testing", "ImageRenderer.Testing\ImageRenderer.Testing.csproj", "{1CBD4883-5D57-46F7-A06D-8D5029E0E726}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderHaze.VideoRenderer", "RenderHaze.VideoRenderer\RenderHaze.VideoRenderer.csproj", "{4AB2B80F-527B-44F5-ACCE-4AFA99A8D6B5}"
@@ -12,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoRenderer.Testing", "VideoRenderer.Testing\VideoRenderer.Testing.csproj", "{677C064A-D524-44BB-B2A9-412F1C35A481}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderHaze", "RenderHaze\RenderHaze.csproj", "{1266AC9A-BE48-4D72-913D-4A02FF068078}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenderHaze.Mlt", "RenderHaze.Mlt\RenderHaze.Mlt.csproj", "{BE9ED4E2-9188-436F-89F9-F9DA6D6AB49C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,5 +86,17 @@ Global
 		{1266AC9A-BE48-4D72-913D-4A02FF068078}.Release|x64.Build.0 = Release|Any CPU
 		{1266AC9A-BE48-4D72-913D-4A02FF068078}.Release|x86.ActiveCfg = Release|Any CPU
 		{1266AC9A-BE48-4D72-913D-4A02FF068078}.Release|x86.Build.0 = Release|Any CPU
+		{BE9ED4E2-9188-436F-89F9-F9DA6D6AB49C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE9ED4E2-9188-436F-89F9-F9DA6D6AB49C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE9ED4E2-9188-436F-89F9-F9DA6D6AB49C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{BE9ED4E2-9188-436F-89F9-F9DA6D6AB49C}.Debug|x64.Build.0 = Debug|Any CPU
+		{BE9ED4E2-9188-436F-89F9-F9DA6D6AB49C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BE9ED4E2-9188-436F-89F9-F9DA6D6AB49C}.Debug|x86.Build.0 = Debug|Any CPU
+		{BE9ED4E2-9188-436F-89F9-F9DA6D6AB49C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE9ED4E2-9188-436F-89F9-F9DA6D6AB49C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE9ED4E2-9188-436F-89F9-F9DA6D6AB49C}.Release|x64.ActiveCfg = Release|Any CPU
+		{BE9ED4E2-9188-436F-89F9-F9DA6D6AB49C}.Release|x64.Build.0 = Release|Any CPU
+		{BE9ED4E2-9188-436F-89F9-F9DA6D6AB49C}.Release|x86.ActiveCfg = Release|Any CPU
+		{BE9ED4E2-9188-436F-89F9-F9DA6D6AB49C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
