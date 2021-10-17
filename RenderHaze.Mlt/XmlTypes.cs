@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 // https://json2csharp.com/xml-to-csharp
 
-namespace RenderHaze.Mlt
+namespace RenderHaze.Mlt.XmlTypes
 {
     [XmlRoot(ElementName = "profile")]
     public class Profile
