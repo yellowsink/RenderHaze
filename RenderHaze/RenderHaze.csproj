@@ -13,8 +13,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\RenderHaze.ImageRenderer\RenderHaze.ImageRenderer.csproj" />
-      <ProjectReference Include="..\RenderHaze.VideoRenderer\RenderHaze.VideoRenderer.csproj" />
+        <ProjectReference Include="..\RenderHaze.ImageRenderer\RenderHaze.ImageRenderer.csproj"/>
+        <ProjectReference Include="..\RenderHaze.VideoRenderer\RenderHaze.VideoRenderer.csproj"/>
     </ItemGroup>
 
 </Project>

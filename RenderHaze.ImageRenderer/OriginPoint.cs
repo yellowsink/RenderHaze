@@ -1,9 +1,14 @@
-namespace RenderHaze.ImageRenderer
+namespace RenderHaze.ImageRenderer;
+
+public enum OriginPoint
 {
-	public enum OriginPoint
-	{
-		TopLeft, TopCenter, TopRight,
-		CenterLeft, Center, CenterRight,
-		BottomLeft, BottomCenter, BottomRight
-	}
+	TopLeft,
+	TopCenter,
+	TopRight,
+	CenterLeft,
+	Center,
+	CenterRight,
+	BottomLeft,
+	BottomCenter,
+	BottomRight
 }

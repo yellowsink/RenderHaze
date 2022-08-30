@@ -1,55 +1,50 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.PixelFormats;
-using SixLabors.ImageSharp.Processing;
+using SkiaSharp;
 
-namespace RenderHaze.ImageRenderer
+namespace RenderHaze.ImageRenderer;
+
+[DebuggerDisplay("Renderer with {Layers.Count} layers")]
+public class Renderer : IDisposable
 {
-	[DebuggerDisplay("Renderer with {Layers.Count} layers")]
-	public class Renderer<TPixel> : IDisposable where TPixel : unmanaged, IPixel<TPixel>
+	public IList<Layer> Layers = new List<Layer>();
+
+	public Renderer(IList<Layer> layers) { Layers = layers; }
+
+	public Renderer() { }
+
+	public void Dispose()
 	{
-		public List<Layer<TPixel>> Layers = new();
-		
-		public Renderer(List<Layer<TPixel>> layers) => Layers = layers;
-		public Renderer() {}
+		foreach (var t in Layers) t.Dispose();
+	}
 
-		public Image<TPixel> Render(int width, int height)
-		{
-			var baseLayer = new Image<TPixel>(width, height);
-			
-			foreach (var layer in Layers) LayerImage(ref baseLayer, PreProcessLayer(layer));
+	public SKImage Render(int width, int height)
+	{
+		var surface = SKSurface.Create(new SKImageInfo(width, height));
 
-			return baseLayer;
-		}
+		foreach (var layer in Layers) LayerImage(surface.Canvas, PreProcessLayer(layer));
 
-		private static void LayerImage(ref Image<TPixel> baseI, Layer<TPixel> layer)
-			=> baseI.Mutate(x =>
-			{
-				x.DrawImage(layer.Image, new Point(layer.OffsetX, layer.OffsetY), layer.Opacity);
-			});
+		return surface.Snapshot();
+	}
 
-		private static Layer<TPixel> PreProcessLayer(Layer<TPixel> layer)
-		{
-			var processedLayer = layer;
-			var img            = layer.Image;
+	private static void LayerImage(SKCanvas canvas, Layer layer)
+		=> SKSurface.Create(layer.Image.PeekPixels())
+					.Draw(canvas,
+						  layer.OffsetX,
+						  layer.OffsetY,
+						  new SKPaint
+						  {
+							  Color = SKColor.Empty.WithAlpha((byte) (layer.Opacity * byte.MaxValue))
+						  });
 
-			img.Mutate(x =>
-			{
-				var (scaleOx, scaleOy)   =  ImageProcessing.Scale(x, layer);
-				var (originOx, originOy) =  ImageProcessing.CalculateOriginOffset(layer);
-				processedLayer.OffsetX   += (int) scaleOx + originOx;
-				processedLayer.OffsetY   += (int) scaleOy + originOy;
-			});
-			
-			processedLayer.Image = img;
-			return processedLayer;
-		}
+	private static Layer PreProcessLayer(Layer layer)
+	{
+		var scaleOffset = ImageProcessing.Scale(layer);
+		var posOffset   = ImageProcessing.CalculateOriginOffset(layer);
+		layer.OffsetX += posOffset.x + scaleOffset.x;
+		layer.OffsetY += posOffset.y + scaleOffset.y;
 
-		public void Dispose()
-		{
-			foreach (var t in Layers) t.Image.Dispose();
-		}
+		return layer;
 	}
 }

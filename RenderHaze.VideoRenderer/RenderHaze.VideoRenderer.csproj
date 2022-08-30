@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <Nullable>enable</Nullable>
-        <LangVersion>9</LangVersion>
+        <LangVersion>latest</LangVersion>
 
         <PackageId>RenderHaze.VideoRenderer</PackageId>
         <Version>1.3.3</Version>
@@ -15,11 +15,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\RenderHaze.ImageRenderer\RenderHaze.ImageRenderer.csproj" />
+        <ProjectReference Include="..\RenderHaze.ImageRenderer\RenderHaze.ImageRenderer.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Xabe.FFmpeg" Version="5.0.2" />
+        <PackageReference Include="Xabe.FFmpeg" Version="5.0.2"/>
     </ItemGroup>
 
 </Project>

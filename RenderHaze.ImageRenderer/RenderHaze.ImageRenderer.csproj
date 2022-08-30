@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
         <Nullable>enable</Nullable>
-        <LangVersion>9</LangVersion>
-        
+        <LangVersion>latest</LangVersion>
+
         <PackageId>RenderHaze.ImageRenderer</PackageId>
         <Version>1.3.3</Version>
         <Authors>Cain Atkinson</Authors>
@@ -15,7 +15,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="SixLabors.ImageSharp" Version="1.0.3" />
+        <PackageReference Include="SkiaSharp.NativeAssets.Linux.NoDependencies" Version="2.88.1"/>
     </ItemGroup>
 
 </Project>
